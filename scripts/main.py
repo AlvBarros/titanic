@@ -9,18 +9,18 @@ font = {
     'family': 'serif'
 }
 
-train = pd.read_csv('../input/train.csv', header=0)
+df = pd.read_csv('../input/train.csv', header=0)
 
 # Chance de sobreviver por sexo
-train.groupby(['Sex'], as_index=True)[['Survived']].mean().applymap(to_percentage).plot(kind='bar')
-plt.figure(2)
+df1 = df.groupby(['Sex'], as_index=True)[['Survived']].mean().applymap(to_percentage).plot(kind='bar')
+plt.figure(1)
 plt.title('Chance de sobrevivência por sexo', fontdict=font)
 plt.xlabel('sexo', fontdict=font)
 plt.ylabel('chance (%)', fontdict=font)
 
 # Chance de sobrevivência por classe
-train.groupby(['Pclass'], as_index=True)[['Survived']].mean().applymap(to_percentage).plot(kind='bar')
-plt.figure(1)
+df2 = df.groupby(['Pclass'], as_index=True)[['Survived']].mean().applymap(to_percentage).plot(kind='bar')
+plt.figure(2)
 plt.title('Chance de sobrevivência por classe', fontdict=font)
 plt.xlabel('classe', fontdict=font)
 plt.ylabel('chance (%)', fontdict=font)

@@ -1,5 +1,6 @@
 import os
 os.environ["PATH"] += os.pathsep + 'C:/Program Files (x86)/Graphviz2.38/bin/'
+import datetime
 
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -32,11 +33,20 @@ tree = DecisionTreeClassifier(criterion='entropy')
 tree = tree.fit(X=X_train, y=y_train)
 y_pred = tree.predict(X_test)
 accuracy = accuracy_score(y_test, y_pred)
-title = 'Titanic Survival Decision tree - Accuracy: {}'.format(accuracy)
+title = str(str(datetime.datetime.now().date()) + ' - Titanic Survival Decision tree - Accuracy: {}'.format(accuracy))
+
+print('Titanic - Machine Learning from Disaster')
+print(str(datetime.datetime.now().date()))
+print()
+print('Train size: {}'.format(X_train[['Pclass']].count(axis=0).values))
+print('Test size: {}'.format(X_test[['Pclass']].count(axis=0).values))
+print('Accuracy: {}'.format(accuracy))
 
 label_names = ['0', '1']
 graph_data = export_graphviz(tree, feature_names=col_x,
 class_names=label_names, filled=True, rounded=True, out_file=None)
 graph = graphviz.Source(graph_data)
-graph.render(title)
+graph.render('Titanic Decision Tree Classifier')
 graph
+print()
+print('File "Titanic Decision Tree Classifier created')

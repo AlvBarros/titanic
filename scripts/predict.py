@@ -32,11 +32,11 @@ tree = DecisionTreeClassifier(criterion='entropy')
 tree = tree.fit(X=X_train, y=y_train)
 y_pred = tree.predict(X_test)
 accuracy = accuracy_score(y_test, y_pred)
-print('Decision tree accuracy: {}'.format(accuracy))
+title = 'Titanic Survival Decision tree - Accuracy: {}'.format(accuracy)
 
 label_names = ['0', '1']
 graph_data = export_graphviz(tree, feature_names=col_x,
 class_names=label_names, filled=True, rounded=True, out_file=None)
 graph = graphviz.Source(graph_data)
-graph.render('Titanic')
+graph.render(title)
 graph
